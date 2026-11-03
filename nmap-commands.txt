@@ -1,0 +1,84 @@
+nmap -sP -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 --source-port 53 -T4 <IP>
+
+nmap -sP -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 --source-port 53 -T4 192.168.0.1
+
+-sP = Scan Ports
+-PE = ICMP echo, timestamp, and netmask request discovery probes
+-PP = same as PE
+-PS21,22.... = TCP SYN/ACK, UDP or SCTP discovery to given ports
+-PA = same as PS
+-T4 = Fast Scan
+--source-port (source port from which we scan)
+
+Scan 50000 IPs
+
+nmap -n -sL -iR 50000 -oN -
+
+Scan Specific Target 🧿
+
+nmap -v -n -PE -Pn <target>
+
+-n = never do DNS resolution
+-v = verbose output -vv is higher verbosity level
+-PE = ICMP echo, timestamp and netmask request discovery probes
+-Pn = Bypassing Ping Probe Requests
+
+nmap -v -n -PE -PO <target>
+
+-PO = IP Protocol Ping
+
+Scan Specific Ports ☠️
+
+nmap -v -n -PS21-23,25,53,80,443,3389 -PO -PE -PM -PP <target>
+
+nmap -sL 54.248.103.0/24 -oG -
+
+-sL = List scan
+-oG = Output scan
+
+Scan network with Firewall : 🔥🚧
+
+nmap --script firewalk --traceroute <target> -vv
+
+traceroute 192.168.20.2
+
+hping -R 192.168.20.2 -V
+
+TCP SYN/ACK, UDP or SCTP discovery to given ports
+
+nmap -PS/PA/PU/PY
+
+ICMP echo, timestamp, and netmask request discovery probes 🕐
+
+nmap -PE/PP/PM
+
+Never do DNS resolution/Always resolve [default: sometimes] 🚫
+Never do DNS resolution | -n 🚫
+Always resolve | -R 🚫
+
+Scan Techniques
+
+▶️TCP SYN scan -sS
+▶️Connect scan -sT
+▶️ACK scan -sA
+▶️Window scan-sW
+▶️Maimon scan -sM
+▶️UDP Scan -sU
+▶️TCP Null scan -sN
+▶️FIN scan -sF
+▶️Xmas scan -sX
+▶️IP protocol scan -sO
+
+Scan UDP ports with Nmap, e.g.:
+
+nmap -sU -p U:53,161 <target>
+
+Scan "number" most common ports
+
+nmap -sS --top-ports "1000" <target>
+
+More :
+https://highon.coffee/blog/nmap-cheat-sheet/
+
+This is a list of common ports that will give you a pretty good list of "alive" system when scanning internally or externally.
+
