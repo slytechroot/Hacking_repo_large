@@ -20,6 +20,8 @@ nmap -sS -p 80,443,8080 --open --script http-title --script-args
 'http.useragent="Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like
 Gecko"' 10.10.40.0/24
 
+nmap --script smb-security-mode.nse -p 445 192.168.1.160
+
 ======================
 
 Zone transfer
